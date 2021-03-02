@@ -2,6 +2,7 @@
 
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import time
 
 def get_coord(url):
@@ -31,9 +32,13 @@ while True:
     df = df.append({'timestamp':coord['timestamp'][0],
                     'lat':coord['lat'][0],
                     'long': coord['long'][0]},
-                    ignore_index = True)
+                    ignore_index = True,)
 
-    fig = px.scatter_geo(df, lat = 'lat', lon = 'long')
+    fig = px.scatter_geo(df,
+                        lat = 'lat',
+                        lon = 'long',
+                        projection = 'orthographic',
+                        )
+    
     fig.show()
-
-    time.sleep(20)
+    time.sleep(15)
